@@ -19,15 +19,15 @@ public partial class userLogin : System.Web.UI.Page
         try
         {
             System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection();
-            sc.ConnectionString = @"Server=LOCALHOST;Database=PBKDF2;Trusted_Connection=Yes;";
+            sc.ConnectionString = @"Server=LOCALHOST;Database=Project;Trusted_Connection=Yes;";
             lblStatus.Text = "Database Connection Successful";
 
             sc.Open();
             System.Data.SqlClient.SqlCommand findPass = new System.Data.SqlClient.SqlCommand();
             findPass.Connection = sc;
             // SELECT PASSWORD STRING WHERE THE ENTERED USERNAME MATCHES
-            findPass.CommandText = "select PasswordHash from Pass where Username = @Username";
-            findPass.Parameters.Add(new SqlParameter("@Username", txtUsername.Text));
+            findPass.CommandText = "select PasswordHash from [dbo].[Pass] where Email = @Email";
+            findPass.Parameters.Add(new SqlParameter("@Email", txtEmail.Text));
 
             SqlDataReader reader = findPass.ExecuteReader(); // create a reader
 
@@ -43,7 +43,7 @@ public partial class userLogin : System.Web.UI.Page
                     {
                         lblStatus.Text = "Login Successful!";
 
-                        txtUsername.Enabled = false;
+                        txtEmail.Enabled = false;
                         txtPassword.Enabled = false;
                         Response.Redirect("HomeScreen.aspx", false);
                     }

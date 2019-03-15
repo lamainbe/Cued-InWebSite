@@ -21,7 +21,7 @@ public partial class CreateUser : System.Web.UI.Page
             try
             {
                 System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection();
-                sc.ConnectionString = @"Server=LOCALHOST;Database=PBKDF2;Trusted_Connection=Yes;"; // connect to PBKDF2 database
+                sc.ConnectionString = @"Server=LOCALHOST;Database=Project;Trusted_Connection=Yes;"; // connect to PBKDF2 database
                 lblStatus.Text = "Database Connection Successful";
 
                 sc.Open();
@@ -29,18 +29,27 @@ public partial class CreateUser : System.Web.UI.Page
                 System.Data.SqlClient.SqlCommand createUser = new System.Data.SqlClient.SqlCommand();
                 createUser.Connection = sc;
                 // INSERT USER RECORD
-                createUser.CommandText = "insert into[dbo].[Pass] values(@CName, @FName, @LName, @Email,)";
+                createUser.CommandText = "insert into[dbo].[Employer] values(@CName, @FName, @LName, @Email, @Phone , @Street, @City, @State, @County, @Zip, @Website, @BusinessDesc, @CultureDesc)";
+                createUser.Parameters.Add(new SqlParameter("@CName", companyNameTxt.Text));
                 createUser.Parameters.Add(new SqlParameter("@FName", firstNameTxt.Text));
                 createUser.Parameters.Add(new SqlParameter("@LName", lastNameTxt.Text));
-                createUser.Parameters.Add(new SqlParameter("@CName", companyNameTxt.Text));
                 createUser.Parameters.Add(new SqlParameter("@Email", emailTxt.Text));
                 createUser.Parameters.Add(new SqlParameter("@Phone", ""));
+                createUser.Parameters.Add(new SqlParameter("@Street", ""));
+                createUser.Parameters.Add(new SqlParameter("@City", ""));
+                createUser.Parameters.Add(new SqlParameter("@State", ""));
+                createUser.Parameters.Add(new SqlParameter("@County", ""));
+                createUser.Parameters.Add(new SqlParameter("@Zip", ""));
+                createUser.Parameters.Add(new SqlParameter("@Website", ""));
+                createUser.Parameters.Add(new SqlParameter("@BusinessDesc", ""));
+                createUser.Parameters.Add(new SqlParameter("@CultureDesc", ""));
                 createUser.ExecuteNonQuery();
 
                 System.Data.SqlClient.SqlCommand setPass = new System.Data.SqlClient.SqlCommand();
                 setPass.Connection = sc;
+                
                 // INSERT PASSWORD RECORD AND CONNECT TO USER
-                setPass.CommandText = "insert into[dbo].[Pass] values((select max(userid) from person), @Email, @Password)";
+                setPass.CommandText = "insert into[dbo].[Pass] values(@Email, @Password)";
                 setPass.Parameters.Add(new SqlParameter("@Email", emailTxt.Text));
                 setPass.Parameters.Add(new SqlParameter("@Password", PasswordHash.HashPassword(passwordTxt.Text))); // hash entered password
                 setPass.ExecuteNonQuery();

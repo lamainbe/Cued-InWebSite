@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
         <div class="container-fluid">
             <br />
-            <asp:LinkButton ID="lnkCreate" runat="server" OnServerClick="lnkCreate_Click">Create User Page</asp:LinkButton>
+            <asp:LinkButton ID="lnkCreate" runat="server" OnClick="lnkCreate_Click">Create User Page</asp:LinkButton>
             <br />
             <br />
 
@@ -30,12 +30,12 @@
         
         <div class="row" style="margin-top:30px;">
             <div class="col-sm-4">
-                <asp:Label ID="Usernamelbl" runat="server" Text="Username:"></asp:Label>
+                <asp:Label ID="emaillbl" runat="server" Text="Email:"></asp:Label>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <div class="row">
