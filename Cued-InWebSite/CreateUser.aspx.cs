@@ -29,12 +29,12 @@ public partial class CreateUser : System.Web.UI.Page
                 System.Data.SqlClient.SqlCommand createUser = new System.Data.SqlClient.SqlCommand();
                 createUser.Connection = sc;
                 // INSERT USER RECORD
-                createUser.CommandText = "insert into[dbo].[Employer] values(@CName, @FName, @LName, @Email,)";
+                createUser.CommandText = "insert into[dbo].[Pass] values(@CName, @FName, @LName, @Email,)";
                 createUser.Parameters.Add(new SqlParameter("@FName", firstNameTxt.Text));
                 createUser.Parameters.Add(new SqlParameter("@LName", lastNameTxt.Text));
                 createUser.Parameters.Add(new SqlParameter("@CName", companyNameTxt.Text));
                 createUser.Parameters.Add(new SqlParameter("@Email", emailTxt.Text));
-                createUser.Parameters.Add(new SqlParameter("@Phone", "Null"));
+                createUser.Parameters.Add(new SqlParameter("@Phone", ""));
                 createUser.ExecuteNonQuery();
 
                 System.Data.SqlClient.SqlCommand setPass = new System.Data.SqlClient.SqlCommand();
