@@ -71,8 +71,9 @@ public partial class JobListings : System.Web.UI.Page
 
             }
             sc.Open();
-            String qry3 = "INSERT INTO [dbo].[JobListing] VALUES(@Name, @Street, @City, @State, @County, @Zip, @School, @Type, @Cluster, @Occupation, @Deadline, @Link, @Description)";
+                String qry3 = "INSERT INTO [dbo].[JobListing] VALUES(@Name, @Street, @City, @State, @County, @Zip, @School, @Type, @Cluster, @Occupation, @Deadline, @Link, @Description)";
                 System.Data.SqlClient.SqlCommand sqlcom = new System.Data.SqlClient.SqlCommand(qry3, sc);
+               
                 sqlcom.Parameters.AddWithValue("@Name", tempJob.getjobName());
                 sqlcom.Parameters.AddWithValue("@Street", tempJob.getStreet());
                 sqlcom.Parameters.AddWithValue("@City", tempJob.getCity());
@@ -84,8 +85,8 @@ public partial class JobListings : System.Web.UI.Page
                 sqlcom.Parameters.AddWithValue("@Cluster", tempJob.getCluster());
                 sqlcom.Parameters.AddWithValue("@Occupation", tempJob.getOccupation());
                 sqlcom.Parameters.AddWithValue("@Deadline", tempJob.getDeadline());
-                sqlcom.Parameters.AddWithValue("@Link", Txt_Link.Text.Trim());
-                sqlcom.Parameters.AddWithValue("@Description", Txt_Description.Text.Trim());
+                sqlcom.Parameters.AddWithValue("@Link", Txt_Link.Text);
+                sqlcom.Parameters.AddWithValue("@Description", Txt_Description.Text);
                 sqlcom.ExecuteNonQuery();
             sc.Close();
 

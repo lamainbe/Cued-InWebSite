@@ -141,9 +141,9 @@ public class Job
     {
         this.deadline = deadline;
     }
-    public DateTime getDeadline()
+    public String getDeadline()
     {
-        return this.deadline;
+        return this.deadline.ToShortDateString();
     }
 
 }
