@@ -1,0 +1,108 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="CuedInMasterPage.master.cs" Inherits="CuedInMasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cued-In Web Sysytem</title>
+    <link href="Conten/bootstrap.css" rel="stylesheet" />
+<%--The stuff in the style tages in here was the only way i could get 
+    it to be a vertical nagivation page but change it to make prettier--%>
+<style>
+    .vertical-menu {
+  float: left;
+  width: 10%;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #eee;
+  color: black;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #eee;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+</style>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+<div class="vertical-menu">
+   <div class="dropdown">
+    <button class="dropbtn">Account</button>
+        <div class="dropdown-content">
+            <a href="BusinessUser.aspx">Profile</a>
+            <a href="AccountSettings.aspx">Settings</a>
+        </div>
+       <a href="HomeScreen.aspx">DashBoard</a>
+        <a href="Notifications.aspx">Notifications</a>
+        <a href="JobListings.aspx">Job Listings</a>
+        <a href="ScholarshipListings.aspx">Scholarship Listings</a>
+        <a href="EventListings.aspx">Event Listings</a>
+        <a href="Cued-InHelp.aspx">Cued-In Help</a>
+    </div>
+</div>
+   
+
+        
+
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+     <script src="http://~/Scripts/jquery-3.3.1.slim.min.js"></script>
+    <script src="http://~/Scripts/popper.min.js"></script>
+    <script src="http://~/Scripts/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
