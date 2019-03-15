@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
 
+//Nothing
+
 public partial class JobListings : System.Web.UI.Page
 {
     System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
