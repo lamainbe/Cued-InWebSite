@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+ 
     <header>
       <style type="text/css">
             #Sec1 
@@ -25,11 +26,11 @@
     </div>
     <div class="form group col-md-3">
                <label for="Address">Street Address</label>
-                <asp:TextBox ID="txtStreet" type="text" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txt_Street" type="text" runat="server" CssClass="form-control"></asp:TextBox>
     </div>
     <div class="form group col-md-3">
                <label for="City">City</label>
-                <asp:TextBox ID="txt_Zip" type="text" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txt_City" type="text" runat="server" CssClass="form-control"></asp:TextBox>
     </div>
          <div class="form group col-md-3">
                <label for="State">State</label>
@@ -88,21 +89,58 @@
              </asp:DropDownList>
     </div>
    <div class="form group col-md-3">
-               <label for="County">County</label>
-               <asp:DropDownList ID="County_DropDown" runat="server"></asp:DropDownList>
+        <label for="Conties">Counties</label>
+       <asp:ListBox ID="ListBox_Counties" runat="server" SelectionMode="Multiple">
+           <asp:ListItem>Accomack</asp:ListItem>
+           <asp:ListItem>Albemarle</asp:ListItem>
+           <asp:ListItem>Alleghany</asp:ListItem>
+           <asp:ListItem>Amelia </asp:ListItem>
+           <asp:ListItem>Arlington</asp:ListItem>
+           <asp:ListItem>Augusta</asp:ListItem>
+           <asp:ListItem>Bath</asp:ListItem>
+           <asp:ListItem>Bedford</asp:ListItem>
+           <asp:ListItem>Bland</asp:ListItem>
+           <asp:ListItem>Botetourt</asp:ListItem>
+           <asp:ListItem>Brunswich</asp:ListItem>
+           <asp:ListItem>Buchana</asp:ListItem>
+           <asp:ListItem>Buckingham</asp:ListItem>
+           <asp:ListItem>Carroll</asp:ListItem>
+           <asp:ListItem>Charlotte</asp:ListItem>
+           <asp:ListItem>Chesterfield</asp:ListItem>
+           <asp:ListItem>Dinwiddie</asp:ListItem>
+           <asp:ListItem>Essex</asp:ListItem>
+           <asp:ListItem>Fairfax</asp:ListItem>
+           <asp:ListItem>Goochland</asp:ListItem>
+           <asp:ListItem>Rockingham</asp:ListItem>
+           <asp:ListItem>Smyth</asp:ListItem>
+
+       </asp:ListBox>
     </div>
          <div class="form group col-md-3">
                <label for="Zip">Zip Code</label>
-                <asp:TextBox ID="txtZip" type="text" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txt_Zip" type="text" runat="server" CssClass="form-control"></asp:TextBox>
     </div>
         <div class="form group col-md-3">
                <label for="School">School</label>
-             <asp:DropDownList ID="School_Dropdown" runat="server"></asp:DropDownList>
+            <asp:ListBox ID="ListBox1" runat="server" SelectionMode="Multiple">
+                <asp:ListItem>Broadway</asp:ListItem>
+                <asp:ListItem>East Rockingham</asp:ListItem>
+                <asp:ListItem>Spotswood</asp:ListItem>
+                <asp:ListItem>Turner Ashby</asp:ListItem>
+                <asp:ListItem>Rockingham Academy</asp:ListItem>
+                <asp:ListItem>Massanutten Technical Center</asp:ListItem>
+                <asp:ListItem>Elkton Middle School</asp:ListItem>
+                <asp:ListItem>J. Frank Hillyard</asp:ListItem>
+                <asp:ListItem>Montevideo</asp:ListItem>
+                <asp:ListItem>Wilbur S. Pence</asp:ListItem>
+                <asp:ListItem>Cub Run</asp:ListItem>
+                <asp:ListItem>Elkton Elementary</asp:ListItem>
+                <asp:ListItem>Fulks Run</asp:ListItem>
+                <asp:ListItem>Lacey Spring</asp:ListItem>
+                <asp:ListItem>Linville-Edom</asp:ListItem>
+
+            </asp:ListBox>
             </div>
-     <div class="form group col-md-3">
-               <label for="Zip">Zip Code</label>
-       <asp:TextBox ID="TextBox2" type="text" runat="server" CssClass="form-control"></asp:TextBox>
-    </div>
          <div class="form group col-md-3">
                <label for="type">Job Type</label>
              <asp:DropDownList ID="Type_DropDown" runat="server">
@@ -140,7 +178,18 @@
             </div>
          <div class="form group col-md-3">
                <label for="Occupation">Occupation</label>
-             <asp:DropDownList ID="Occupation_DropDown" runat="server"></asp:DropDownList>
+             <asp:DropDownList ID="Occupation_DropDown" runat="server">
+                 <asp:ListItem>Aquacultural Managers</asp:ListItem>
+                 <asp:ListItem>Farm and Ranch Managers</asp:ListItem>
+                 <asp:ListItem>Farm Labor Contractors</asp:ListItem>
+                 <asp:ListItem>Nonfarm Animal Caretakers</asp:ListItem>
+                 <asp:ListItem>Environmental Engineering Technicians </asp:ListItem>
+                 <asp:ListItem>Hazardous Material Removal Workers</asp:ListItem>
+                 <asp:ListItem>Carpenters</asp:ListItem>
+                 <asp:ListItem>Construction Carpenters</asp:ListItem>
+                 <asp:ListItem>Crane Operators and Tenders</asp:ListItem>
+                 <asp:ListItem>Dredge Operators</asp:ListItem>
+             </asp:DropDownList>
             </div>
         <div class="form group col-md-3">
             <label for="Aplication Deadline">Application Deadline</label>

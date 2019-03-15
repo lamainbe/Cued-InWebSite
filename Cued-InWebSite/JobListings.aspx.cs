@@ -46,6 +46,6 @@ public partial class JobListings : System.Web.UI.Page
 
     protected void Btn_Save_Click(object sender, EventArgs e)
     {
-
+        Job tempJob = new Job(txt_Name.Text, txtStreet.Text, )
     }
 }
