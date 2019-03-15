@@ -122,7 +122,7 @@
     </div>
         <div class="form group col-md-3">
                <label for="School">School</label>
-            <asp:ListBox ID="ListBox1" runat="server" SelectionMode="Multiple">
+            <asp:ListBox ID="ListBox_School" runat="server" SelectionMode="Multiple">
                 <asp:ListItem>Broadway</asp:ListItem>
                 <asp:ListItem>East Rockingham</asp:ListItem>
                 <asp:ListItem>Spotswood</asp:ListItem>

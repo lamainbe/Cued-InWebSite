@@ -21,6 +21,8 @@ public class Job
     private DateTime deadline;
     private String link;
     private String description;
+    public static String[] countyArray = new String[100];
+    public static String[] schoolArray = new String[100];
 
     public Job(String jobName, String street, String city, String state, String county, String zip, String school, String jobType, String cluster, String occupation, DateTime deadline,
         String link, String description)
@@ -83,7 +85,7 @@ public class Job
     {
         this.zip = zip;
     }
-    public String getzip()
+    public String getZip()
     {
         return this.zip;
     }
@@ -99,7 +101,7 @@ public class Job
     {
         this.jobType = jobType;
     }
-    public String getjobType()
+    public String getJobType()
     {
         return this.jobType;
     }
@@ -139,7 +141,7 @@ public class Job
     {
         this.deadline = deadline;
     }
-    public DateTime getdeadline()
+    public DateTime getDeadline()
     {
         return this.deadline;
     }
