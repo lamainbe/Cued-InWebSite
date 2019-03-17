@@ -22,7 +22,7 @@ public partial class CreateUser : System.Web.UI.Page
             //{
                 System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection();
                 sc.ConnectionString = @"Server=LOCALHOST;Database=Project;Trusted_Connection=Yes;"; // connect to PBKDF2 database
-                lblStatus.Text = "Database Connection Successful";
+                //lblStatus.Text = "Database Connection Successful";
 
                 sc.Open();
                 Employer emp = new Employer(companyNameTxt.Text, firstNameTxt.Text, lastNameTxt.Text, emailTxt.Text, "", "", "", "", "", "", "", "", "");
@@ -56,21 +56,23 @@ public partial class CreateUser : System.Web.UI.Page
 
                 sc.Close();
 
-                lblStatus.Text = "User committed!";
+                //lblStatus.Text = "User committed!";
                 firstNameTxt.Enabled = false;
                 lastNameTxt.Enabled = false;
                 emailTxt.Enabled = false;
                 passwordTxt.Enabled = false;
                 createBtn.Enabled = false;
                 lnkAnother.Visible = true;
-            }
+
+                Response.Redirect("userLogin.aspx", false);
+        }
             //catch
             //{
             //    lblStatus.Text = "Database Error - User not committed.";
             //}
         
-        else
-            lblStatus.Text = "Fill all fields.";
+        //else
+        //    lblStatus.Text = "Fill all fields.";
 
     }
 
@@ -91,7 +93,7 @@ public partial class CreateUser : System.Web.UI.Page
         lastNameTxt.Text = "";
         emailTxt.Text = "";
         passwordTxt.Text = "";
-        lblStatus.Text = "";
+        //lblStatus.Text = "";
     }
 
 

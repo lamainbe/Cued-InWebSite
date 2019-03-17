@@ -19,7 +19,7 @@ public partial class userLogin : System.Web.UI.Page
 
     protected void BtnLogin_Click(object sender, EventArgs e)
     {
-        Label1.Text = "something";
+       
         // connect to database to retrieve stored password string
         try
         {

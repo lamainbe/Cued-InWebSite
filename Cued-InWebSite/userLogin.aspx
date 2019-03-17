@@ -28,12 +28,16 @@
                 <div class="row w-100">
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left p-5">
-                            <div class="brand-logo">
+                            <%--<div class="brand-logo">
                                 <img src="template/images/logo.svg" alt="logo"/>
-                            </div>
+                            </div>--%>
                             <h4>Welcome back!</h4>
-                            <h6 class="font-weight-light">Sign in to continue.</h6>
+                            <h6>Sign in to continue.</h6>
+                            <div class="font-weight-light">
+                                    <a href="CreateUser.aspx" class="auth-link text-black">or Create an Account</a>
+                            </div>
                             <form class="pt-3" runat="server">
+                                
                                 <div class="form-group">
                                     <asp:TextBox ID="txtEmail" type="text" runat="server" class="form-control form-control-lg" placeholder="Email"></asp:TextBox>
                                     
@@ -52,9 +56,7 @@
                                 <div class="my-2 d-flex justify-content-between align-items-center">
                                     <a href="#" class="auth-link text-black">Forgot password?</a>
                                 </div>
-                                <div>
-                                    <asp:Label ID="Label1" runat="server" Text="nothing"></asp:Label>
-                                </div>
+                                
                             </form>
                         </div>
                     </div>
