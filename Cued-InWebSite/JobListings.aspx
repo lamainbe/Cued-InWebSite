@@ -223,7 +223,6 @@
         <asp:Button ID="Btn_Save" runat="server" Text="Save " OnClick="Btn_Save_Click" />
         <asp:Button ID="Populate_Button" runat="server" OnClick="Populate_Button_Click" Text="Populate" />
         </div>
-        <div>
     
   </section>
 </asp:Content>

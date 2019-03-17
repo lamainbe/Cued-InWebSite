@@ -54,7 +54,7 @@ public partial class JobListings : System.Web.UI.Page
         {
             if (ListBox_Counties.Items[i].Selected)
             {
-                tempCounty += ListBox_Counties.Items[i].ToString() + "/";
+                tempCounty += ListBox_Counties.Items[i].ToString() + ", ";
             }
         }
         String tempSchools = "";
@@ -62,7 +62,7 @@ public partial class JobListings : System.Web.UI.Page
         {
             if (ListBox_School.Items[i].Selected)
             {
-                tempSchools += ListBox_School.Items[i].ToString() + "/";
+                tempSchools += ListBox_School.Items[i].ToString() + ", ";
             }
         }
 
@@ -91,12 +91,11 @@ public partial class JobListings : System.Web.UI.Page
                 sqlListing.ExecuteNonQuery();
             
 
-        //get max id
+        //get max Listing ID
         System.Data.SqlClient.SqlCommand sqlcom1 = new System.Data.SqlClient.SqlCommand();
         sqlcom1.Connection = sc;
         sqlcom1.CommandText = "select max(ListingID) from [dbo].[Listing]";
         int maxID = Convert.ToInt32(sqlcom1.ExecuteScalar());
-        //maxID++;
         sqlcom1.ExecuteNonQuery();
 
         //create job listing
@@ -134,4 +133,6 @@ public partial class JobListings : System.Web.UI.Page
                 Txt_Description.Text = "This job requires xyz tasks and xyz qualities in a candidate";
 
             }
+
+    
 }
