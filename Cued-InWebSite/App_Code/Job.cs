@@ -22,8 +22,6 @@ public class Job
     private String link;
     private String description;
     private String status;
-    public static String[] countyArray = new String[100];
-    public static String[] schoolArray = new String[100];
 
     public Job(String jobName, String street, String city, String state, String county, String zip, String school, String jobType, String cluster, String occupation, DateTime deadline,
         String link, String description, String status)
