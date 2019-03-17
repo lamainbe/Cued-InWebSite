@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 
 public partial class JobListings : System.Web.UI.Page
 {
+    int i = 0;
     System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
@@ -51,47 +52,34 @@ public partial class JobListings : System.Web.UI.Page
         Job tempJob = new Job(txt_Name.Text, txt_Street.Text, txt_City.Text, State_DropDown.SelectedValue, ListBox_Counties.SelectedValue, txt_Zip.Text,
             ListBox_School.SelectedValue, Type_DropDown.SelectedValue, Cluster_DropDown.SelectedValue, Occupation_DropDown.SelectedValue,
             DateTime.Parse(TxtCalendar.Text), Txt_Link.Text, Txt_Description.Text, DropDownList_Status.SelectedValue);
-
-        int temp = ListBox_Counties.Items.Count;
-
-        if (temp < ListBox_School.Items.Count)
-        {
-            temp = ListBox_School.Items.Count;
-        }
-
-        for (int i = 0; i < temp; i++)
+        sc.Open();
+        for (int i = 0; i < ListBox_Counties.Items.Count; i++)
         {
             if (ListBox_Counties.Items[i].Selected)
             {
-                Job.countyArray[i] = ListBox_Counties.Items[i].Value;
-            }
-            if (ListBox_School.Items[i].Selected)
-            {
-                Job.schoolArray[i] = ListBox_School.Items[i].Value;
 
-            }
-            sc.Open();
-            //insert into listing
-           
-            String qry = "INSERT INTO [dbo].[Listing] VALUES((select max(EmployerID) from [dbo].[Employer]), @Name, @TypeofListing, @Street, @City, @State, @County, @Zip, @date, @status)";
-            System.Data.SqlClient.SqlCommand sqlListing = new System.Data.SqlClient.SqlCommand(qry,sc);
-            sqlListing.Connection = sc;
+                //insert into listing
 
-            sqlListing.Parameters.AddWithValue("@Name", tempJob.getjobName());
-            sqlListing.Parameters.AddWithValue("@TypeOfListing", "JobListing");
-            sqlListing.Parameters.AddWithValue("@Street", tempJob.getStreet());
-            sqlListing.Parameters.AddWithValue("@City", tempJob.getCity());
-            sqlListing.Parameters.AddWithValue("@State", tempJob.getState());
-            for(int i = 0; i < Job.countyArray.Length; i++)
-            {
-               sqlListing.Parameters.AddWithValue("@County", Job.countyArray[i]);
-            }
-         
-            sqlListing.Parameters.AddWithValue("@Zip", tempJob.getZip());
-            sqlListing.Parameters.AddWithValue("@date", DateTime.Today);
-            sqlListing.Parameters.AddWithValue("@status", tempJob.getStatus());
-            sqlListing.ExecuteNonQuery();
+                String qry = "INSERT INTO [dbo].[Listing] VALUES((select max(EmployerID) from [dbo].[Employer]), @Name, @TypeofListing, @Street, @City, @State, @County, @Zip, @date, @status)";
+                System.Data.SqlClient.SqlCommand sqlListing = new System.Data.SqlClient.SqlCommand(qry, sc);
+                sqlListing.Connection = sc;
 
+                sqlListing.Parameters.AddWithValue("@Name", tempJob.getjobName());
+                sqlListing.Parameters.AddWithValue("@TypeOfListing", "JobListing");
+                sqlListing.Parameters.AddWithValue("@Street", tempJob.getStreet());
+                sqlListing.Parameters.AddWithValue("@City", tempJob.getCity());
+                sqlListing.Parameters.AddWithValue("@State", tempJob.getState());
+                for (i = 0; i < Job.countyArray.Length; i++)
+                {
+                    sqlListing.Parameters.AddWithValue("@County", ListBox_Counties.Items[i].Value);
+                }
+
+                sqlListing.Parameters.AddWithValue("@Zip", tempJob.getZip());
+                sqlListing.Parameters.AddWithValue("@date", DateTime.Today);
+                sqlListing.Parameters.AddWithValue("@status", tempJob.getStatus());
+                sqlListing.ExecuteNonQuery();
+            }
+        }
 
             //get max id
             System.Data.SqlClient.SqlCommand sqlcom1 = new System.Data.SqlClient.SqlCommand();
