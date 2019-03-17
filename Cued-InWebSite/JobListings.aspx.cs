@@ -49,18 +49,31 @@ public partial class JobListings : System.Web.UI.Page
 
     protected void Btn_Save_Click(object sender, EventArgs e)
     {
-        Job tempJob = new Job(txt_Name.Text, txt_Street.Text, txt_City.Text, State_DropDown.SelectedValue, ListBox_Counties.SelectedValue, txt_Zip.Text,
-            ListBox_School.SelectedValue, Type_DropDown.SelectedValue, Cluster_DropDown.SelectedValue, Occupation_DropDown.SelectedValue,
-            DateTime.Parse(TxtCalendar.Text), Txt_Link.Text, Txt_Description.Text, DropDownList_Status.SelectedValue);
-        sc.Open();
+        String tempCounty = "";
         for (int i = 0; i < ListBox_Counties.Items.Count; i++)
         {
             if (ListBox_Counties.Items[i].Selected)
             {
+                tempCounty += ListBox_Counties.Items[i].ToString() + "/";
+            }
+        }
+        String tempSchools = "";
+        for (int i = 0; i < ListBox_School.Items.Count; i++)
+        {
+            if (ListBox_School.Items[i].Selected)
+            {
+                tempSchools += ListBox_School.Items[i].ToString() + "/";
+            }
+        }
+        Job tempJob = new Job(txt_Name.Text, txt_Street.Text, txt_City.Text, State_DropDown.SelectedValue, tempCounty, txt_Zip.Text,
+            tempSchools, Type_DropDown.SelectedValue, Cluster_DropDown.SelectedValue, Occupation_DropDown.SelectedValue,
+            DateTime.Parse(TxtCalendar.Text), Txt_Link.Text, Txt_Description.Text, DropDownList_Status.SelectedValue);
+        sc.Open();
+        
 
-                //insert into listing
-                // select EmployerID from employer where @Email = email;
-                String qry = "INSERT INTO [dbo].[Listing] VALUES((select max(EmployerID) from [dbo].[Employer]), @Name, @TypeofListing, @Street, @City, @State, @County, @Zip, @date, @status)";
+        //insert into listing
+        // select EmployerID from employer where @Email = email;
+        String qry = "INSERT INTO [dbo].[Listing] VALUES((select max(EmployerID) from [dbo].[Employer]), @Name, @TypeofListing, @Street, @City, @State, @County, @Zip, @date, @status)";
                 System.Data.SqlClient.SqlCommand sqlListing = new System.Data.SqlClient.SqlCommand(qry, sc);
                 sqlListing.Connection = sc;
 
@@ -69,14 +82,13 @@ public partial class JobListings : System.Web.UI.Page
                 sqlListing.Parameters.AddWithValue("@Street", tempJob.getStreet());
                 sqlListing.Parameters.AddWithValue("@City", tempJob.getCity());
                 sqlListing.Parameters.AddWithValue("@State", tempJob.getState());
-                sqlListing.Parameters.AddWithValue("@County", ListBox_Counties.Items[i].Value);
+                sqlListing.Parameters.AddWithValue("@County", tempJob.getCounty());
                 sqlListing.Parameters.AddWithValue("@Zip", tempJob.getZip());
                 sqlListing.Parameters.AddWithValue("@date", DateTime.Today);
                 sqlListing.Parameters.AddWithValue("@status", tempJob.getStatus());
 
                 sqlListing.ExecuteNonQuery();
-            }
-        }
+            
 
         //get max id
         System.Data.SqlClient.SqlCommand sqlcom1 = new System.Data.SqlClient.SqlCommand();
@@ -87,14 +99,11 @@ public partial class JobListings : System.Web.UI.Page
         sqlcom1.ExecuteNonQuery();
 
         //create job listing
-        for (int i = 0; i < ListBox_School.Items.Count; i++)
-        {
-            if (ListBox_School.Items[i].Selected)
-            {
-                String qry3 = "INSERT INTO [dbo].[JobListing] VALUES(" + maxID + ",@School, @Type, @Cluster, @Occupation, @Deadline, @Link, @Description)";
+        
+        String qry3 = "INSERT INTO [dbo].[JobListing] VALUES(" + maxID + ",@School, @Type, @Cluster, @Occupation, @Deadline, @Link, @Description)";
                 System.Data.SqlClient.SqlCommand sqlcom = new System.Data.SqlClient.SqlCommand(qry3, sc);
                 sqlcom.Connection = sc;
-                sqlcom.Parameters.AddWithValue("@School", ListBox_School.Items[i].Value);
+                sqlcom.Parameters.AddWithValue("@School", tempJob.getSchool());
                 sqlcom.Parameters.AddWithValue("@Type", tempJob.getJobType());
                 sqlcom.Parameters.AddWithValue("@Cluster", tempJob.getCluster());
                 sqlcom.Parameters.AddWithValue("@Occupation", tempJob.getOccupation());
@@ -102,8 +111,7 @@ public partial class JobListings : System.Web.UI.Page
                 sqlcom.Parameters.AddWithValue("@Link", tempJob.getLink());
                 sqlcom.Parameters.AddWithValue("@Description", tempJob.getDescription());
                 sqlcom.ExecuteNonQuery();
-            }
-        }
+            
         sc.Close();
 
     }
