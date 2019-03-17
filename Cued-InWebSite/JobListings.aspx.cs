@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 
 public partial class JobListings : System.Web.UI.Page
 {
+    int i = 0;
     System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
@@ -50,52 +51,80 @@ public partial class JobListings : System.Web.UI.Page
     {
         Job tempJob = new Job(txt_Name.Text, txt_Street.Text, txt_City.Text, State_DropDown.SelectedValue, ListBox_Counties.SelectedValue, txt_Zip.Text,
             ListBox_School.SelectedValue, Type_DropDown.SelectedValue, Cluster_DropDown.SelectedValue, Occupation_DropDown.SelectedValue,
-            DateTime.Parse(TxtCalendar.Text), Txt_Link.Text, Txt_Description.Text);
-
-        int temp = ListBox_Counties.Items.Count;
-
-        if (temp < ListBox_School.Items.Count)
-        {
-            temp = ListBox_School.Items.Count;
-        }
-
-        for (int i = 0; i < temp; i++)
+            DateTime.Parse(TxtCalendar.Text), Txt_Link.Text, Txt_Description.Text, DropDownList_Status.SelectedValue);
+        sc.Open();
+        for (int i = 0; i < ListBox_Counties.Items.Count; i++)
         {
             if (ListBox_Counties.Items[i].Selected)
             {
-                Job.countyArray[i] = ListBox_Counties.Items[i].Value;
-            }
-            if (ListBox_School.Items[i].Selected)
-            {
-                Job.schoolArray[i] = ListBox_School.Items[i].Value;
 
+                //insert into listing
+
+                String qry = "INSERT INTO [dbo].[Listing] VALUES((select max(EmployerID) from [dbo].[Employer]), @Name, @TypeofListing, @Street, @City, @State, @County, @Zip, @date, @status)";
+                System.Data.SqlClient.SqlCommand sqlListing = new System.Data.SqlClient.SqlCommand(qry, sc);
+                sqlListing.Connection = sc;
+
+                sqlListing.Parameters.AddWithValue("@Name", tempJob.getjobName());
+                sqlListing.Parameters.AddWithValue("@TypeOfListing", "JobListing");
+                sqlListing.Parameters.AddWithValue("@Street", tempJob.getStreet());
+                sqlListing.Parameters.AddWithValue("@City", tempJob.getCity());
+                sqlListing.Parameters.AddWithValue("@State", tempJob.getState());
+                for (i = 0; i < Job.countyArray.Length; i++)
+                {
+                    sqlListing.Parameters.AddWithValue("@County", ListBox_Counties.Items[i].Value);
+                }
+
+                sqlListing.Parameters.AddWithValue("@Zip", tempJob.getZip());
+                sqlListing.Parameters.AddWithValue("@date", DateTime.Today);
+                sqlListing.Parameters.AddWithValue("@status", tempJob.getStatus());
+                sqlListing.ExecuteNonQuery();
             }
-            sc.Open();
-                String qry3 = "INSERT INTO [dbo].[JobListing] VALUES(@Name, @Street, @City, @State, @County, @Zip, @School, @Type, @Cluster, @Occupation, @Deadline, @Link, @Description)";
-                System.Data.SqlClient.SqlCommand sqlcom = new System.Data.SqlClient.SqlCommand(qry3, sc);
-               
-                sqlcom.Parameters.AddWithValue("@Name", tempJob.getjobName());
-                sqlcom.Parameters.AddWithValue("@Street", tempJob.getStreet());
-                sqlcom.Parameters.AddWithValue("@City", tempJob.getCity());
-                sqlcom.Parameters.AddWithValue("@State", tempJob.getState());
-                sqlcom.Parameters.AddWithValue("@County", "test");
-                sqlcom.Parameters.AddWithValue("@Zip", tempJob.getZip());
-                sqlcom.Parameters.AddWithValue("@School","test");
-                sqlcom.Parameters.AddWithValue("@Type", tempJob.getJobType());
-                sqlcom.Parameters.AddWithValue("@Cluster", tempJob.getCluster());
-                sqlcom.Parameters.AddWithValue("@Occupation", tempJob.getOccupation());
-                sqlcom.Parameters.AddWithValue("@Deadline", tempJob.getDeadline());
-                sqlcom.Parameters.AddWithValue("@Link", Txt_Link.Text);
-                sqlcom.Parameters.AddWithValue("@Description", Txt_Description.Text);
-                sqlcom.ExecuteNonQuery();
+        }
+
+            //get max id
+            System.Data.SqlClient.SqlCommand sqlcom1 = new System.Data.SqlClient.SqlCommand();
+            sqlcom1.Connection = sc;
+            sqlcom1.CommandText = "select max(ListingID) from [dbo].[Listing]";
+            int maxID = Convert.ToInt32(sqlcom1.ExecuteScalar());
+            //maxID++;
+            sqlcom1.ExecuteNonQuery();
+
+            //create job listing
+            String qry3 = "INSERT INTO [dbo].[JobListing] VALUES(" + maxID + ",@School, @Type, @Cluster, @Occupation, @Deadline, @Link, @Description)";
+            System.Data.SqlClient.SqlCommand sqlcom = new System.Data.SqlClient.SqlCommand(qry3, sc);
+            sqlcom.Connection = sc;
+            sqlcom.Parameters.AddWithValue("@School", "test");
+            sqlcom.Parameters.AddWithValue("@Type", tempJob.getJobType());
+            sqlcom.Parameters.AddWithValue("@Cluster", tempJob.getCluster());
+            sqlcom.Parameters.AddWithValue("@Occupation", tempJob.getOccupation());
+            sqlcom.Parameters.AddWithValue("@Deadline", tempJob.getDeadline());
+            sqlcom.Parameters.AddWithValue("@Link", tempJob.getLink());
+            sqlcom.Parameters.AddWithValue("@Description", tempJob.getDescription());
+            sqlcom.ExecuteNonQuery();
             sc.Close();
 
-            }
+        }
+        
 
 
 
+    }
 
-
+    protected void Populate_Button_Click(object sender, EventArgs e)
+    {
+        txt_Name.Text = "Data Analyst";
+        txt_Street.Text = "Horse Shoe Dr.";
+        txt_City.Text = "Vienna";
+        State_DropDown.SelectedValue = "VA";
+        ListBox_Counties.SelectedIndex = 1;
+        txt_Zip.Text = "22182";
+        ListBox_School.SelectedIndex = 1;
+        Type_DropDown.SelectedValue = "Internship";
+        Cluster_DropDown.SelectedIndex = 1;
+        Occupation_DropDown.SelectedIndex = 1;
+        TxtCalendar.Text = "01-01-2018";
+        Txt_Link.Text = "www.companywebsite.com";
+        Txt_Description.Text = "This job requires xyz tasks and xyz qualities in a candidate";
 
     }
 }

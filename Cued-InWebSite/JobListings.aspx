@@ -206,12 +206,24 @@
             <label for="Description">Description</label>
             <asp:TextBox ID="Txt_Description" runat="server"></asp:TextBox>
         </div>
+        <div>
+            <label for="Status">Status</label>
+            <asp:DropDownList ID="DropDownList_Status" runat="server">
+                <asp:ListItem>Created</asp:ListItem>
+                <asp:ListItem>Active</asp:ListItem>
+                <asp:ListItem>Closed</asp:ListItem>
+
+            </asp:DropDownList>
+        </div>
        <div>
         <asp:Button ID="Btn_Exit" runat="server" Text="Exit" OnClick="Btn_Exit_Click" />
         </div>
       
     <div>
         <asp:Button ID="Btn_Save" runat="server" Text="Save " OnClick="Btn_Save_Click" />
+        <asp:Button ID="Populate_Button" runat="server" OnClick="Populate_Button_Click" Text="Populate" />
         </div>
+        <div>
+    
   </section>
 </asp:Content>
