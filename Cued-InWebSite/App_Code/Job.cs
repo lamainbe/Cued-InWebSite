@@ -21,11 +21,12 @@ public class Job
     private DateTime deadline;
     private String link;
     private String description;
+    private String status;
     public static String[] countyArray = new String[100];
     public static String[] schoolArray = new String[100];
 
     public Job(String jobName, String street, String city, String state, String county, String zip, String school, String jobType, String cluster, String occupation, DateTime deadline,
-        String link, String description)
+        String link, String description, String status)
     {
         setjobName(jobName);
         setStreet(street);
@@ -38,9 +39,19 @@ public class Job
         setCluster(cluster);
         setOccupation(occupation);
         setDeadline(deadline);
+        setLink(link);
+        setDescription(description);
+        setStatus(status);
 
     }
-
+    public void setStatus(String status)
+    {
+        this.status = status;
+    }
+    public String getStatus()
+    {
+        return this.status;
+    }
     public void setjobName(String jobName)
     {
         this.jobName = jobName;
