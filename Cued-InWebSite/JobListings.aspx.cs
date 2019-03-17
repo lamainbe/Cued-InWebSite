@@ -66,10 +66,10 @@ public partial class JobListings : System.Web.UI.Page
             }
         }
 
-        Listing tempListing = new Listing(txt_Name.Text, Type_DropDown.SelectedValue, txt_Street.Text, txt_City.Text, State_DropDown.SelectedValue, tempCounty, txt_Zip.Text,
+        Listing tempListing = new Listing(txt_Name.Text, "JobListing", txt_Street.Text, txt_City.Text, State_DropDown.SelectedValue, tempCounty, txt_Zip.Text,
             tempSchools, DateTime.Parse(TxtCalendar.Text), DropDownList_Status.SelectedValue);
 
-        Job tempJob = new Job(txt_Name.Text, "JobListing", Cluster_DropDown.SelectedValue, Occupation_DropDown.SelectedValue,
+        Job tempJob = new Job(txt_Name.Text, Type_DropDown.SelectedValue, Cluster_DropDown.SelectedValue, Occupation_DropDown.SelectedValue,
             DateTime.Parse(TxtCalendar.Text), Txt_Link.Text, Txt_Description.Text);
         sc.Open();
         
