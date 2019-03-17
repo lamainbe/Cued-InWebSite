@@ -7,13 +7,13 @@ public class Scholarship
 {
     private String name;
     private String fundingOrg;
-    private String recipients;
-    private Double amount;
+    private int recipients;
+    private int amount;
     private DateTime deadline;
     private String link;
     private String description;
 
-    public Scholarship(String sName, String sFundingOrg, String sRecipients, Double sAmount, DateTime sDeadline, String sLink, String sDescription)
+    public Scholarship(String sName, String sFundingOrg, int sRecipients, int sAmount, DateTime sDeadline, String sLink, String sDescription)
     {
         setName(sName);
         setFundingOrg(sFundingOrg);
@@ -36,7 +36,7 @@ public class Scholarship
 
     public void setFundingOrg(String sFundingOrg)
     {
-        this.name = sFundingOrg;
+        this.fundingOrg = sFundingOrg;
     }
 
     public String getFundingOrg()
@@ -44,22 +44,22 @@ public class Scholarship
         return this.fundingOrg;
     }
 
-    public void setRecipients(String sRecipients)
+    public void setRecipients(int sRecipients)
     {
-        this.name = sRecipients;
+        this.recipients = sRecipients;
     }
 
-    public String getRecipients()
+    public int getRecipients()
     {
         return this.recipients;
     }
 
-    public void setAmount(Double sAmount)
+    public void setAmount(int sAmount)
     {
         this.amount = sAmount;
     }
 
-    public Double getAmount()
+    public int getAmount()
     {
         return this.amount;
     }

@@ -20,6 +20,7 @@
         <h2>
             Job Listing
         </h2>
+    </div>
     <div class="form group col-md-3">
                <label for="Name">Job Name</label>
                 <asp:TextBox ID="txt_Name" type="text" runat="server" CssClass="form-control"></asp:TextBox>
