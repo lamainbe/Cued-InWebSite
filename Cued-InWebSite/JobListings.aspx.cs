@@ -73,10 +73,7 @@ public partial class JobListings : System.Web.UI.Page
             DateTime.Parse(TxtCalendar.Text), Txt_Link.Text, Txt_Description.Text);
         sc.Open();
         
-
-        //insert into listing
-        // select EmployerID from employer where @Email = email;
-        String qry = "INSERT INTO [dbo].[Listing] VALUES((select max(EmployerID) from [dbo].[Employer]), @Name, @TypeofListing, @Street, @City, @State, @County, @Zip, @School, @date, @status)";
+        String qry = "INSERT INTO [dbo].[Listing] VALUES((select EmployerID from [dbo].[Employer] where Email = '" + Session["LoginEmail"].ToString() + "'), @Name, @TypeofListing, @Street, @City, @State, @County, @Zip, @School, @date, @status)";
                 System.Data.SqlClient.SqlCommand sqlListing = new System.Data.SqlClient.SqlCommand(qry, sc);
                 sqlListing.Connection = sc;
 

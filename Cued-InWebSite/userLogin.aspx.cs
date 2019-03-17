@@ -14,7 +14,7 @@ public partial class userLogin : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Session["LoginEmail"] = txtEmail.Text;
     }
 
     protected void BtnLogin_Click(object sender, EventArgs e)
