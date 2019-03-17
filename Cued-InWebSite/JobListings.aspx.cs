@@ -108,7 +108,7 @@ public partial class JobListings : System.Web.UI.Page
 
 
 
-    }
+    
 
     protected void Populate_Button_Click(object sender, EventArgs e)
     {

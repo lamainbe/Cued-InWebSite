@@ -18,31 +18,31 @@ public partial class CreateUser : System.Web.UI.Page
         if (firstNameTxt.Text != "" && lastNameTxt.Text != "" && passwordTxt.Text != "" && emailTxt.Text != "" && companyNameTxt.Text !="") // all fields must be filled out
         {
             // COMMIT VALUES
-            try
-            {
+            //try
+            //{
                 System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection();
                 sc.ConnectionString = @"Server=LOCALHOST;Database=Project;Trusted_Connection=Yes;"; // connect to PBKDF2 database
                 lblStatus.Text = "Database Connection Successful";
 
                 sc.Open();
-
+                Employer emp = new Employer(companyNameTxt.Text, firstNameTxt.Text, lastNameTxt.Text, emailTxt.Text, "", "", "", "", "", "", "", "", "");
                 System.Data.SqlClient.SqlCommand createUser = new System.Data.SqlClient.SqlCommand();
                 createUser.Connection = sc;
                 // INSERT USER RECORD
                 createUser.CommandText = "insert into[dbo].[Employer] values(@CName, @FName, @LName, @Email, @Phone , @Street, @City, @State, @County, @Zip, @Website, @BusinessDesc, @CultureDesc)";
-                createUser.Parameters.Add(new SqlParameter("@CName", companyNameTxt.Text));
-                createUser.Parameters.Add(new SqlParameter("@FName", firstNameTxt.Text));
-                createUser.Parameters.Add(new SqlParameter("@LName", lastNameTxt.Text));
-                createUser.Parameters.Add(new SqlParameter("@Email", emailTxt.Text));
-                createUser.Parameters.Add(new SqlParameter("@Phone", ""));
-                createUser.Parameters.Add(new SqlParameter("@Street", ""));
-                createUser.Parameters.Add(new SqlParameter("@City", ""));
-                createUser.Parameters.Add(new SqlParameter("@State", ""));
-                createUser.Parameters.Add(new SqlParameter("@County", ""));
-                createUser.Parameters.Add(new SqlParameter("@Zip", ""));
-                createUser.Parameters.Add(new SqlParameter("@Website", ""));
-                createUser.Parameters.Add(new SqlParameter("@BusinessDesc", ""));
-                createUser.Parameters.Add(new SqlParameter("@CultureDesc", ""));
+                createUser.Parameters.Add(new SqlParameter("@CName", emp.getBusinessName()));
+                createUser.Parameters.Add(new SqlParameter("@FName", emp.getContactFirstName()));
+                createUser.Parameters.Add(new SqlParameter("@LName", emp.getContactLastName()));
+                createUser.Parameters.Add(new SqlParameter("@Email", emp.getEmail()));
+                createUser.Parameters.Add(new SqlParameter("@Phone", emp.getPhone()));
+                createUser.Parameters.Add(new SqlParameter("@Street", emp.getStreet()));
+                createUser.Parameters.Add(new SqlParameter("@City", emp.getCity()));
+                createUser.Parameters.Add(new SqlParameter("@State", emp.getState()));
+                createUser.Parameters.Add(new SqlParameter("@County", emp.getCounty()));
+                createUser.Parameters.Add(new SqlParameter("@Zip", emp.getZip()));
+                createUser.Parameters.Add(new SqlParameter("@Website", emp.getWebsiteLink()));
+                createUser.Parameters.Add(new SqlParameter("@BusinessDesc", emp.getBusinessDescription()));
+                createUser.Parameters.Add(new SqlParameter("@CultureDesc", emp.getCultureDescription()));
                 createUser.ExecuteNonQuery();
 
                 System.Data.SqlClient.SqlCommand setPass = new System.Data.SqlClient.SqlCommand();
@@ -64,11 +64,11 @@ public partial class CreateUser : System.Web.UI.Page
                 createBtn.Enabled = false;
                 lnkAnother.Visible = true;
             }
-            catch
-            {
-                lblStatus.Text = "Database Error - User not committed.";
-            }
-        }
+            //catch
+            //{
+            //    lblStatus.Text = "Database Error - User not committed.";
+            //}
+        
         else
             lblStatus.Text = "Fill all fields.";
 

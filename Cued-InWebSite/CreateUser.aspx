@@ -14,17 +14,6 @@
     <br />
     <br />
 
-    <div class="row">
-        <div class="col-lg-8">
-            <h6><b>About our Extra Credit Form</b></h6>
-            <p>
-                This form utilizes reCAPTCHA which protects you against spam and other types of automated abuse. We built upon
-                the password hashing account create and login validation files to provide more secure pages. This
-                added protection verifies the user interacting with the page is a human (not a bot) through image selection.
-            </p>
-        </div>
-    </div>
-    <br />
 
     <strong>Create User</strong><br />
 

@@ -35,7 +35,7 @@
                             <h6 class="font-weight-light">Sign in to continue.</h6>
                             <form class="pt-3" runat="server">
                                 <div class="form-group">
-                                    <asp:TextBox ID="txtEmail" type="text" runat="server" class="form-control form-control-lg" placeholder="Username"></asp:TextBox>
+                                    <asp:TextBox ID="txtEmail" type="text" runat="server" class="form-control form-control-lg" placeholder="Email"></asp:TextBox>
                                     
                                     <%--<input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username"/>--%>
                                 </div>
