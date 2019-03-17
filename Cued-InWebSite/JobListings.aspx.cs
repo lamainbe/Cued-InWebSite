@@ -63,7 +63,7 @@ public partial class JobListings : System.Web.UI.Page
                 String qry = "INSERT INTO [dbo].[Listing] VALUES((select max(EmployerID) from [dbo].[Employer]), @Name, @TypeofListing, @Street, @City, @State, @County, @Zip, @date, @status)";
                 System.Data.SqlClient.SqlCommand sqlListing = new System.Data.SqlClient.SqlCommand(qry, sc);
                 sqlListing.Connection = sc;
-                
+
                 sqlListing.Parameters.AddWithValue("@Name", tempJob.getjobName());
                 sqlListing.Parameters.AddWithValue("@TypeOfListing", "JobListing");
                 sqlListing.Parameters.AddWithValue("@Street", tempJob.getStreet());
@@ -73,7 +73,7 @@ public partial class JobListings : System.Web.UI.Page
                 sqlListing.Parameters.AddWithValue("@Zip", tempJob.getZip());
                 sqlListing.Parameters.AddWithValue("@date", DateTime.Today);
                 sqlListing.Parameters.AddWithValue("@status", tempJob.getStatus());
-                
+
                 sqlListing.ExecuteNonQuery();
             }
         }
@@ -106,24 +106,24 @@ public partial class JobListings : System.Web.UI.Page
         }
         sc.Close();
 
-    
-
-
-protected void Populate_Button_Click(object sender, EventArgs e)
-    {
-        txt_Name.Text = "Data Analyst";
-        txt_Street.Text = "Horse Shoe Dr.";
-        txt_City.Text = "Vienna";
-        State_DropDown.SelectedValue = "VA";
-        ListBox_Counties.SelectedIndex = 1;
-        txt_Zip.Text = "22182";
-        ListBox_School.SelectedIndex = 1;
-        Type_DropDown.SelectedValue = "Internship";
-        Cluster_DropDown.SelectedIndex = 1;
-        Occupation_DropDown.SelectedIndex = 1;
-        TxtCalendar.Text = "01-01-2018";
-        Txt_Link.Text = "www.companywebsite.com";
-        Txt_Description.Text = "This job requires xyz tasks and xyz qualities in a candidate";
-
     }
+
+
+        protected void Populate_Button_Click(object sender, EventArgs e)
+            {
+                txt_Name.Text = "Data Analyst";
+                txt_Street.Text = "Horse Shoe Dr.";
+                txt_City.Text = "Vienna";
+                State_DropDown.SelectedValue = "VA";
+                ListBox_Counties.SelectedIndex = 1;
+                txt_Zip.Text = "22182";
+                ListBox_School.SelectedIndex = 1;
+                Type_DropDown.SelectedValue = "Internship";
+                Cluster_DropDown.SelectedIndex = 1;
+                Occupation_DropDown.SelectedIndex = 1;
+                TxtCalendar.Text = "01-01-2018";
+                Txt_Link.Text = "www.companywebsite.com";
+                Txt_Description.Text = "This job requires xyz tasks and xyz qualities in a candidate";
+
+            }
 }
