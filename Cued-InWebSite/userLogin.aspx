@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="userLogin.aspx.cs" Inherits="userLogin" %>
-
+ 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
      <!-- Required meta tags -->
@@ -20,6 +19,8 @@
       <!-- endinject -->
       <link rel="shortcut icon" href="template/images/favicon.png" />
 </head>
+   
+        
 <body class="boxed-layout">
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -32,18 +33,27 @@
                             </div>
                             <h4>Welcome back!</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>
-                            <form class="pt-3">
+                            <form class="pt-3" runat="server">
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username"/>
+                                    <asp:TextBox ID="txtEmail" type="text" runat="server" class="form-control form-control-lg" placeholder="Username"></asp:TextBox>
+                                    
+                                    <%--<input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username"/>--%>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password"/>
+                                    <asp:TextBox ID="txtPassword" type="text" runat="server" class="form-control form-control-lg" placeholder="Password"></asp:TextBox>
+                                    <%--<input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password"/>--%>
                                 </div>
                                 <div class="mt-3">
-                                    <a class="btn btn_block btn_primary btn_lg font-weight-medium auth-form-btn" href="../../index.html">SIGN IN</a>
+                                    <asp:Button ID="Button1" runat="server" Text="Sign in" class="btn btn_block btn_primary btn_lg font-weight-medium auth-form-btn" OnClick="BtnLogin_Click" />
+                                    <%--<a class="btn btn_block btn_primary btn_lg font-weight-medium auth-form-btn" href="HomeScreen.aspx" onmouseclick="BtnLogin_Click()">SIGN IN</a>--%>
+                               
+                                
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
                                     <a href="#" class="auth-link text-black">Forgot password?</a>
+                                </div>
+                                <div>
+                                    <asp:Label ID="Label1" runat="server" Text="nothing"></asp:Label>
                                 </div>
                             </form>
                         </div>
@@ -125,5 +135,6 @@
     <asp:Button ID="Button1" runat="server" Text="Login" onClick="BtnLogin_Click" ssClass="btn btn-outline-primary"/>
    
     </form>--%>
+  
 </body>
 </html>
