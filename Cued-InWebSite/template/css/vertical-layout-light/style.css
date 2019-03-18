@@ -27677,6 +27677,8 @@ div.tagsinput span.tag a {
   position: relative;
   padding: 0;
   text-align: center;
+    top: 33px;
+    left: 30px;
 }
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .count-indicator i {
