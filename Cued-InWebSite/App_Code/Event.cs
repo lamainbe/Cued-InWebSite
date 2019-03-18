@@ -12,11 +12,11 @@ public class Event
     private DateTime time;
     private String description;
 
-    public Event(String eName, String eType, String eAffiliated, DateTime eDate, DateTime eTime, String eDescription)
+    public Event(String eName, String eType, String eSchool, DateTime eDate, DateTime eTime, String eDescription)
     {
         setName(eName);
         setType(eType);
-        setAffiliatedSchool(eAffiliated);
+        setAffiliatedSchool(eSchool);
         setDate(eDate);
         setTime(eTime);
         setDescription(eDescription);
@@ -42,9 +42,9 @@ public class Event
         return this.type;
     }
 
-    public void setAffiliatedSchool(String eAffiliated)
+    public void setAffiliatedSchool(String eSchool)
     {
-        this.affiliatedSchool = eAffiliated;
+        this.affiliatedSchool = eSchool;
     }
 
     public String getAffiliatedSchool()

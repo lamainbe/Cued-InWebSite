@@ -32,27 +32,6 @@
                   <asp:ListItem Value="Seminar">Seminar</asp:ListItem>
              </asp:DropDownList>
             </div>
-                <div class="form group col-md-3">
-               <label for="Affiliated School(s)">Affiliated School(s)</label>
-            <asp:ListBox ID="ListBox_School" runat="server" SelectionMode="Multiple" OnSelectedIndexChanged="ListBox_School_SelectedIndexChanged">
-                <asp:ListItem>Broadway</asp:ListItem>
-                <asp:ListItem>East Rockingham</asp:ListItem>
-                <asp:ListItem>Spotswood</asp:ListItem>
-                <asp:ListItem>Turner Ashby</asp:ListItem>
-                <asp:ListItem>Rockingham Academy</asp:ListItem>
-                <asp:ListItem>Massanutten Technical Center</asp:ListItem>
-                <asp:ListItem>Elkton Middle School</asp:ListItem>
-                <asp:ListItem>J. Frank Hillyard</asp:ListItem>
-                <asp:ListItem>Montevideo</asp:ListItem>
-                <asp:ListItem>Wilbur S. Pence</asp:ListItem>
-                <asp:ListItem>Cub Run</asp:ListItem>
-                <asp:ListItem>Elkton Elementary</asp:ListItem>
-                <asp:ListItem>Fulks Run</asp:ListItem>
-                <asp:ListItem>Lacey Spring</asp:ListItem>
-                <asp:ListItem>Linville-Edom</asp:ListItem>
-
-            </asp:ListBox>
-            </div>
          <div class="form group col-md-3">
             <label for="Date">Date</label>
             <asp:ImageButton ID="Cal_Button" runat="server" Height="44px" ImageUrl="~/CIS Files/calendar.png" Width="48px" OnClick="Cal_Button_Click" style="margin-top: 0px" /> 
@@ -61,8 +40,8 @@
             <asp:Calendar ID="Job_Calendar" runat="server" OnSelectionChanged="Job_Calendar_SelectionChanged"></asp:Calendar>
  </div>
         <div class="form group col-md-3">
-               <label for="Time">Time</label>
-                <asp:TextBox ID="TextBox1" type="text" runat="server" CssClass="form-control"></asp:TextBox>
+               <label for="Text_Time">Time</label>
+                <asp:TextBox ID="Text_Time" type="text" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
         <div>
             <label for="Location">Location</label>
@@ -167,6 +146,28 @@
              <asp:Label ID="lbl_Zip" runat="server" Text="Zip Code" Visible="false"></asp:Label>
                 <asp:TextBox ID="txt_Zip" type="text" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
     </div>
+    </div>
+        <div class="form group col-md-3">
+               <label for="School">School(s)</label>
+            <asp:ListBox ID="ListBox_School" runat="server" SelectionMode="Multiple">
+                <asp:ListItem>Broadway</asp:ListItem>
+                <asp:ListItem>East Rockingham</asp:ListItem>
+                <asp:ListItem>Spotswood</asp:ListItem>
+                <asp:ListItem>Turner Ashby</asp:ListItem>
+                <asp:ListItem>Rockingham Academy</asp:ListItem>
+                <asp:ListItem>Massanutten Technical Center</asp:ListItem>
+                <asp:ListItem>Elkton Middle School</asp:ListItem>
+                <asp:ListItem>J. Frank Hillyard</asp:ListItem>
+                <asp:ListItem>Montevideo</asp:ListItem>
+                <asp:ListItem>Wilbur S. Pence</asp:ListItem>
+                <asp:ListItem>Cub Run</asp:ListItem>
+                <asp:ListItem>Elkton Elementary</asp:ListItem>
+                <asp:ListItem>Fulks Run</asp:ListItem>
+                <asp:ListItem>Lacey Spring</asp:ListItem>
+                <asp:ListItem>Linville-Edom</asp:ListItem>
+
+            </asp:ListBox>
+            </div>
         <div>
             <label for="Description">Description</label>
             <asp:TextBox ID="Txt_Description" runat="server" Height="118px" Width="341px"></asp:TextBox>
