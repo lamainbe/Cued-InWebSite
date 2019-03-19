@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#"  AutoEventWireup="true" CodeFile="EventListings.aspx.cs" Inherits="EventListings" %>
+﻿<%@ Page Title="" Language="C#"  AutoEventWireup="true" CodeFile="EditJob.aspx.cs" Inherits="EditJob" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,18 +7,19 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Event Listings | CUED-in</title>
+  <title>Job Listings - CUED-in</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="template/vendors/iconfonts/mdi/font/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="template/vendors/css/vendor.bundle.base.css">
-  <link rel="stylesheet" href="template/vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="template/css/vendor.bundle.addons.css">
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="template/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../../../../images/favicon.png" />
+  <link rel="shortcut icon" href="template/images/favicon.png">
+   
 </head>
 
 <body class="boxed-layout">
@@ -107,6 +108,10 @@
               <span class="nav-profile-name">Emily Perry</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item" link="#">
+                <i class="mdi mdi-account text-primary"></i>
+                Account
+              </a>
               <a class="dropdown-item">
                 <i class="mdi mdi-settings text-primary"></i>
                 Settings
@@ -129,6 +134,7 @@
         </button>
       </div>
     </nav>
+      </div>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:../../partials/_settings-panel.html -->
@@ -333,28 +339,28 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <h3>Add a New Event</h3>
-            <div class="col-12 grid-margin">
+           <div class="row">
+             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <form class="form-sample">
+                  <h4 class="card-title">Edit Job Listing</h4>
+                  <form class="forms-sample" runat="server">
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Event Name</label>
+                          <label class="col-sm-3 col-form-label">Job Title</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" />
+                              <asp:TextBox ID="txt_Name" type="text" runat="server" CssClass="form-control"></asp:TextBox>
+                            <%--<input type="text" class="form-control" />--%>
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Event Type</label>
+                          <label class="col-sm-3 col-form-label">Street Address</label>
                           <div class="col-sm-9">
-                            <select class="form-control">
-                              <option>1</option>
-                              <option>2</option>
-                            </select>
+                               <asp:TextBox ID="txt_Street" type="text" runat="server" CssClass="form-control"></asp:TextBox>
+                           <%-- <input type="text" class="form-control" />--%>
                           </div>
                         </div>
                       </div>
@@ -362,87 +368,294 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Date <img src="../../../../images/calendar-month-outline.png" id="Cal_Button" OnClick="Cal_Button_Click"></label>
+                          <label class="col-sm-3 col-form-label">City</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" />
-                          </div>
-                        </div>
-                      </div>
+                              <asp:TextBox ID="txt_City" type="text" runat="server" CssClass="form-control"></asp:TextBox>
+                           <%-- <input type="text" class="form-control" />--%>
+                          </div><!--end col-->
+                        </div><!--end form-->
+                      </div><!--end col-md-6-->
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Time</label>
+                          <label class="col-sm-3 col-form-label">State</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" />
-                          </div>
-                        </div>
-                      </div>
-                    </div><!--end row-->
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Location</label>
-                          <div class="col-sm-4">
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked>
-                                School
-                              </label>
-                            </div>
-                          </div>
-                          <div class="col-sm-5">
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
-                                Offsite
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">School(s)</label>
-                          <div class="col-sm-9">
-                            <select class="form-control">
+                              <asp:DropDownList ID="State_DropDown" runat="server" class="form-control">
+                                <asp:ListItem Value="AL">Alabama</asp:ListItem>
+	                            <asp:ListItem Value="AK">Alaska</asp:ListItem>
+	                            <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+	                            <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+	                            <asp:ListItem Value="CA">California</asp:ListItem>
+	                            <asp:ListItem Value="CO">Colorado</asp:ListItem>
+	                            <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+	                            <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+	                            <asp:ListItem Value="DE">Delaware</asp:ListItem>
+	                            <asp:ListItem Value="FL">Florida</asp:ListItem>
+	                            <asp:ListItem Value="GA">Georgia</asp:ListItem>
+	                            <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+	                            <asp:ListItem Value="ID">Idaho</asp:ListItem>
+	                            <asp:ListItem Value="IL">Illinois</asp:ListItem>
+	                            <asp:ListItem Value="IN">Indiana</asp:ListItem>
+	                            <asp:ListItem Value="IA">Iowa</asp:ListItem>
+	                            <asp:ListItem Value="KS">Kansas</asp:ListItem>
+	                            <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+	                            <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+	                            <asp:ListItem Value="ME">Maine</asp:ListItem>
+	                            <asp:ListItem Value="MD">Maryland</asp:ListItem>
+	                            <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+	                            <asp:ListItem Value="MI">Michigan</asp:ListItem>
+	                            <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+	                            <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+	                            <asp:ListItem Value="MO">Missouri</asp:ListItem>
+	                            <asp:ListItem Value="MT">Montana</asp:ListItem>
+	                            <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+	                            <asp:ListItem Value="NV">Nevada</asp:ListItem>
+	                            <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+	                            <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+	                            <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+	                            <asp:ListItem Value="NY">New York</asp:ListItem>
+	                            <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+	                            <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+	                            <asp:ListItem Value="OH">Ohio</asp:ListItem>
+	                            <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+	                            <asp:ListItem Value="OR">Oregon</asp:ListItem>
+	                            <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+	                            <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+	                            <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+	                            <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+	                            <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+	                            <asp:ListItem Value="TX">Texas</asp:ListItem>
+	                            <asp:ListItem Value="UT">Utah</asp:ListItem>
+	                            <asp:ListItem Value="VT">Vermont</asp:ListItem>
+	                            <asp:ListItem Value="VA">Virginia</asp:ListItem>
+	                            <asp:ListItem Value="WA">Washington</asp:ListItem>
+	                            <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+	                            <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+	                            <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                         </asp:DropDownList>
+                            <%--<select class="form-control">
                               <option>1</option>
                               <option>2</option>
-                            </select>
+                            </select>--%>
                           </div>
                         </div>
                       </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">County</label>
+                          <div class="col-sm-9">
+                               <asp:ListBox ID="ListBox_Counties" runat="server" SelectionMode="Multiple" class="form-control">
+                                <asp:ListItem>Accomack</asp:ListItem>
+                                <asp:ListItem>Albemarle</asp:ListItem>
+                                <asp:ListItem>Alleghany</asp:ListItem>
+                                <asp:ListItem>Amelia </asp:ListItem>
+                                <asp:ListItem>Arlington</asp:ListItem>
+                                <asp:ListItem>Augusta</asp:ListItem>
+                                <asp:ListItem>Bath</asp:ListItem>
+                                <asp:ListItem>Bedford</asp:ListItem>
+                                <asp:ListItem>Bland</asp:ListItem>
+                                <asp:ListItem>Botetourt</asp:ListItem>
+                                <asp:ListItem>Brunswich</asp:ListItem>
+                                <asp:ListItem>Buchana</asp:ListItem>
+                                <asp:ListItem>Buckingham</asp:ListItem>
+                                <asp:ListItem>Carroll</asp:ListItem>
+                                <asp:ListItem>Charlotte</asp:ListItem>
+                                <asp:ListItem>Chesterfield</asp:ListItem>
+                                <asp:ListItem>Dinwiddie</asp:ListItem>
+                                <asp:ListItem>Essex</asp:ListItem>
+                                <asp:ListItem>Fairfax</asp:ListItem>
+                                <asp:ListItem>Goochland</asp:ListItem>
+                                <asp:ListItem>Rockingham</asp:ListItem>
+                                <asp:ListItem>Smyth</asp:ListItem>
+
+                            </asp:ListBox>
+                            <%--<select class="form-control">
+                              <option>1</option>
+                              <option>2</option>
+                            </select>--%>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Zip Code</label>
+                            <div class="col-sm-9">
+                                <asp:TextBox ID="txt_Zip" type="text" runat="server" CssClass="form-control"></asp:TextBox>
+                            <%--<input type="text" class="form-control" />--%>
+                          </div><!--end col-->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">School</label>
+                          <div class="col-sm-9">
+                              <asp:ListBox ID="ListBox_School" runat="server" SelectionMode="Multiple" class="form-control">
+                                <asp:ListItem>Broadway</asp:ListItem>
+                                <asp:ListItem>East Rockingham</asp:ListItem>
+                                <asp:ListItem>Spotswood</asp:ListItem>
+                                <asp:ListItem>Turner Ashby</asp:ListItem>
+                                <asp:ListItem>Rockingham Academy</asp:ListItem>
+                                <asp:ListItem>Massanutten Technical Center</asp:ListItem>
+                                <asp:ListItem>Elkton Middle School</asp:ListItem>
+                                <asp:ListItem>J. Frank Hillyard</asp:ListItem>
+                                <asp:ListItem>Montevideo</asp:ListItem>
+                                <asp:ListItem>Wilbur S. Pence</asp:ListItem>
+                                <asp:ListItem>Cub Run</asp:ListItem>
+                                <asp:ListItem>Elkton Elementary</asp:ListItem>
+                                <asp:ListItem>Fulks Run</asp:ListItem>
+                                <asp:ListItem>Lacey Spring</asp:ListItem>
+                                <asp:ListItem>Linville-Edom</asp:ListItem>
+
+                            </asp:ListBox>
+                            <%--<select class="form-control">
+                              <option>1</option>
+                              <option>2</option>
+                            </select>--%>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Job Type</label>
+                          <div class="col-sm-9">
+                              <asp:DropDownList ID="Type_DropDown" runat="server" class="form-control">
+                                 <asp:ListItem Value="Internship">Internship</asp:ListItem>
+                                  <asp:ListItem Value="Job Shadowing">Job Shadowing</asp:ListItem>
+                                  <asp:ListItem Value="Mentorship">Mentorship</asp:ListItem>
+                                  <asp:ListItem Value="Service Learning">Service Learning</asp:ListItem>
+                                  <asp:ListItem Value="Volunteer">Volunteer</asp:ListItem>
+                                  <asp:ListItem Value="Clinical Cooperative Education">Clinical Cooperative Education</asp:ListItem>
+                                 <asp:ListItem Value="Cooperative Education">Cooperative Education</asp:ListItem>
+                                  <asp:ListItem Value="Youth Regisered Apprenticeship">Youth Regisered Apprenticeship</asp:ListItem>
+                                  <asp:ListItem Value="Registered Appenticeships">Registered Apprenticeships</asp:ListItem>
+                                  <asp:ListItem Value="General Employement">General Employement</asp:ListItem>
+                             </asp:DropDownList>
+                            <%--<select class="form-control">
+                              <option>1</option>
+                              <option>2</option>
+                            </select>--%>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Career Cluster</label>
+                          <div class="col-sm-9">
+                               <asp:DropDownList ID="Cluster_DropDown" runat="server" class="form-control">
+                                <asp:ListItem Value="Agriculture,Food & Natural Resources">Agriculture,Food & Natural Resources</asp:ListItem>
+                                 <asp:ListItem Value="Architecture & Construction">Architecture & Construction</asp:ListItem>
+                                 <asp:ListItem Value="Arts,Audio/Video Technology & Communications">Arts,Audio/Video Technology & Communications</asp:ListItem>
+                                 <asp:ListItem Value="Business Management & Administration">Business Management & Administration</asp:ListItem>
+                                 <asp:ListItem Value="Education & Training">Education & Training</asp:ListItem>
+                                 <asp:ListItem Value="Finance">Finance</asp:ListItem>
+                                 <asp:ListItem Value="Government & Public Administration">Government & Public Administration</asp:ListItem>
+                                 <asp:ListItem Value="Health Science">Health Science</asp:ListItem>
+                                 <asp:ListItem Value="Hospitality & Tourism">Hospitality & Tourism</asp:ListItem>
+                                 <asp:ListItem Value="Human Services">Human Services</asp:ListItem>
+                                 <asp:ListItem Value="Law,Public Safety,Corrections & Security">Law,Public Safety,Corrections & Security</asp:ListItem>
+                                 <asp:ListItem Value="Manufacturing">Manufacturing</asp:ListItem>
+                                 <asp:ListItem Value="Marketing">Marketing</asp:ListItem>
+                                 <asp:ListItem Value="Science,Technology,Enginering & Mathematics">Science,Technology,Enginering & Mathematics</asp:ListItem>
+                                 <asp:ListItem Value="Transportation,Distribution & Logistics">Transportation,Distribution & Logistics</asp:ListItem>
+                             </asp:DropDownList>
+                            <%--<select class="form-control">
+                              <option>1</option>
+                              <option>2</option>
+                            </select>--%>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Occupation</label>
+                          <div class="col-sm-9">
+                              <asp:DropDownList ID="Occupation_DropDown" runat="server" class="form-control">
+                                 <asp:ListItem>Aquacultural Managers</asp:ListItem>
+                                 <asp:ListItem>Farm and Ranch Managers</asp:ListItem>
+                                 <asp:ListItem>Farm Labor Contractors</asp:ListItem>
+                                 <asp:ListItem>Nonfarm Animal Caretakers</asp:ListItem>
+                                 <asp:ListItem>Environmental Engineering Technicians </asp:ListItem>
+                                 <asp:ListItem>Hazardous Material Removal Workers</asp:ListItem>
+                                 <asp:ListItem>Carpenters</asp:ListItem>
+                                 <asp:ListItem>Construction Carpenters</asp:ListItem>
+                                 <asp:ListItem>Crane Operators and Tenders</asp:ListItem>
+                                 <asp:ListItem>Dredge Operators</asp:ListItem>
+                             </asp:DropDownList>
+                            <%--<select class="form-control">
+                              <option>1</option>
+                              <option>2</option>
+                            </select>--%>
+                          </div><!--end col-->
+                        </div><!--end form-->
+                      </div><!--end col-6-->
                     </div><!--end row-->
                     <div class="row">
-                      <div class="col-md-9">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Link to web-based application or website</label>
+                          <div class="col-sm-9">
+                              <asp:TextBox ID="Txt_Link" runat="server" Width="479px"></asp:TextBox>
+                              </div>
+                        </div>
+                      </div>
+                        </div>
+                      <div class="row">
+                      <div class="col-md-6">
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Description</label>
                           <div class="col-sm-9">
-                            <textarea rows="6" cols="50">
-                            </textarea>
-                          </div>
+                              <asp:TextBox ID="Txt_Description" runat="server" Width="479px"></asp:TextBox>
+                              </div>
                         </div>
                       </div>
-                    </div><!--end row-->
+                        </div>
+
                     <div class="row">
-                      <div class="col-md-6">
+                        <div class="col-md-6">
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Status</label>
                           <div class="col-sm-9">
-                            <select class="form-control">
-                              <option>1</option>
-                              <option>2</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
+                           <asp:DropDownList ID="DropDownList_Status" runat="server">
+                            <asp:ListItem>Created</asp:ListItem>
+                            <asp:ListItem>Active</asp:ListItem>
+                            <asp:ListItem>Closed</asp:ListItem>
+                        </asp:DropDownList>
+                              </div><!--end col-9-->
+                            </div><!--end form-->
+                        </div><!--end col-6-->
+                         </div><!--end row-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                            <label for="Aplication Deadline">Application Deadline</label>
+                                 <asp:ImageButton ID="Cal_Button" runat="server" Height="44px" ImageUrl="~/CIS Files/calendar.png" Width="48px" OnClick="Cal_Button_Click" style="margin-top: 0px" /> 
+                                    <asp:TextBox ID="TxtCalendar" runat="server"></asp:TextBox>
+                                    <br />
+                                    <asp:Calendar ID="Job_Calendar" runat="server" OnSelectionChanged="Job_Calendar_SelectionChanged"></asp:Calendar>
+                                <%--<img src="CIS Files/calendar-month-outline.png" ID="Cal_Button" runat="server" OnClick="Cal_Button_Click"></img>
+                                <input type="date">--%>
+                            </div><!--end form-->
+                        </div><!--end col-6-->
+                             <div>
+        <asp:Button ID="Btn_Exit" runat="server" Text="Exit" OnClick="Btn_Exit_Click" />
+        </div>
+      
+    <div>
+        <asp:Button ID="Btn_Update" runat="server" Text="Update"/>
+        <asp:Button ID="Populate_Button" runat="server" OnClick="Populate_Button_Click" Text="Populate" />
+        </div>
+        <div>
+    
                     </div><!--end row-->
-                    <button type="submit" class="btn btn-light">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
-                    <button class="btn btn-light">Populate</button>
                   </form>
                 </div>
               </div>
             </div>
-        </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
@@ -472,7 +685,11 @@
   <script src="template/js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
+    <%--var dateControl = document.querySelector('input[type="date"]');
+        dateControl.value = '2019-01-01';--%>
   <!-- End custom js for this page-->
+</div>
 </body>
-
+    
 </html>
+

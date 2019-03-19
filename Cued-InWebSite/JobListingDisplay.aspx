@@ -21,7 +21,7 @@
                 <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
                 <asp:TemplateField>
                     <ItemTemplate>
-                 <asp:HyperLink ID="lnkEdit" Text = "Edit" NavigateUrl = "~/JobListings.aspx" runat="server" ></asp:HyperLink>
+                 <asp:HyperLink ID="lnkEdit" Text = "Edit" NavigateUrl = "~/EditJob.aspx" runat="server" ></asp:HyperLink>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:CommandField ShowDeleteButton="true"/>
