@@ -337,13 +337,14 @@
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <form class="form-sample">
+                  <form class="form-sample" runat="server">
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Event Name</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" />
+                              <asp:TextBox ID="txt_Name" type="text" runat="server" class="form-control" Width="253px"></asp:TextBox>
+                            <%--<input type="text" class="form-control" />--%>
                           </div>
                         </div>
                       </div>
@@ -351,10 +352,15 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Event Type</label>
                           <div class="col-sm-9">
-                            <select class="form-control">
+                              <asp:DropDownList ID="Type_DropDown" runat="server" class="form-control">
+                                 <asp:ListItem Value="Networking">Networking</asp:ListItem>
+                                  <asp:ListItem Value="Workshop">Workshop</asp:ListItem>
+                                  <asp:ListItem Value="Seminar">Seminar</asp:ListItem>
+                             </asp:DropDownList>
+                            <%--<select class="form-control">
                               <option>1</option>
                               <option>2</option>
-                            </select>
+                            </select>--%>
                           </div>
                         </div>
                       </div>
@@ -362,9 +368,13 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Date <img src="../../../../images/calendar-month-outline.png" id="Cal_Button" OnClick="Cal_Button_Click"></label>
-                          <div class="col-sm-9">
-                            <input type="text" class="form-control" />
+                          <%--<label class="col-sm-3 col-form-label">Date <img src="../../../../images/calendar-month-outline.png" id="Cal_Button" OnClick="Cal_Button_Click"></label>--%>
+                          <label for="Date"class="col-sm-3 col-form-label">Date <asp:ImageButton ID="ImageButton1" runat="server" Height="27px" ImageUrl="~/CIS Files/calendar.png" Width="26px" OnClick="Cal_Button_Click" style="margin-top: 0px" /> </label>
+                            <div class="col-sm-9">
+                                <asp:TextBox ID="TxtCalendar" runat="server" class="form-control"></asp:TextBox>
+                                <br />
+                                <asp:Calendar ID="Job_Calendar" runat="server" OnSelectionChanged="Job_Calendar_SelectionChanged" class="form-control"></asp:Calendar>
+                            <%--<input type="text" class="form-control" />--%>
                           </div>
                         </div>
                       </div>
@@ -372,7 +382,8 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Time</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" />
+                              <asp:TextBox ID="Text_Time" type="text" runat="server" CssClass="form-control"></asp:TextBox>
+                            <%--<input type="text" class="form-control" />--%>
                           </div>
                         </div>
                       </div>
@@ -382,31 +393,52 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Location</label>
                           <div class="col-sm-4">
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked>
-                                School
-                              </label>
-                            </div>
+                            <%--<div class="form-check">
+                              <label class="form-check-label">--%>
+                                  <asp:RadioButtonList ID="RadioButtonList1" runat="server" ForeColor="Black" ><%--OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">>--%>
+                                    <asp:ListItem>&nbsp;&nbsp;&nbsp;School</asp:ListItem>
+                                    <asp:ListItem>&nbsp;&nbsp;&nbsp;Offsite</asp:ListItem>
+                                </asp:RadioButtonList>
+                                <%--<input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked>
+                                <%--School--%>
+                              <%--</label>--%>
+                            <%--</div>--%>
                           </div>
-                          <div class="col-sm-5">
+                          <%--<div class="col-sm-5">
                             <div class="form-check">
                               <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
                                 Offsite
                               </label>
                             </div>
-                          </div>
+                          </div>--%>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">School(s)</label>
                           <div class="col-sm-9">
-                            <select class="form-control">
+                              <asp:ListBox ID="ListBox_School" runat="server" SelectionMode="Multiple" class="form-control">
+                                <asp:ListItem>Broadway</asp:ListItem>
+                                <asp:ListItem>East Rockingham</asp:ListItem>
+                                <asp:ListItem>Spotswood</asp:ListItem>
+                                <asp:ListItem>Turner Ashby</asp:ListItem>
+                                <asp:ListItem>Rockingham Academy</asp:ListItem>
+                                <asp:ListItem>Massanutten Technical Center</asp:ListItem>
+                                <asp:ListItem>Elkton Middle School</asp:ListItem>
+                                <asp:ListItem>J. Frank Hillyard</asp:ListItem>
+                                <asp:ListItem>Montevideo</asp:ListItem>
+                                <asp:ListItem>Wilbur S. Pence</asp:ListItem>
+                                <asp:ListItem>Cub Run</asp:ListItem>
+                                <asp:ListItem>Elkton Elementary</asp:ListItem>
+                                <asp:ListItem>Fulks Run</asp:ListItem>
+                                <asp:ListItem>Lacey Spring</asp:ListItem>
+                                <asp:ListItem>Linville-Edom</asp:ListItem>
+                            </asp:ListBox>
+                            <%--<select class="form-control">
                               <option>1</option>
                               <option>2</option>
-                            </select>
+                            </select>--%>
                           </div>
                         </div>
                       </div>
@@ -416,28 +448,37 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Description</label>
                           <div class="col-sm-9">
-                            <textarea rows="6" cols="50">
-                            </textarea>
+                              <asp:TextBox ID="Txt_Description" runat="server" rows="6" cols="50" class="form-control"></asp:TextBox>
+                            <%--<textarea rows="6" cols="50">
+                            </textarea>--%>
                           </div>
                         </div>
                       </div>
                     </div><!--end row-->
                     <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-9">
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Status</label>
                           <div class="col-sm-9">
-                            <select class="form-control">
+                              <asp:DropDownList ID="DropDownList_Status" runat="server" class="form-control">
+                                <asp:ListItem>Created</asp:ListItem>
+                                <asp:ListItem>Active</asp:ListItem>
+                                <asp:ListItem>Closed</asp:ListItem>
+                            </asp:DropDownList>
+                            <%--<select class="form-control">
                               <option>1</option>
                               <option>2</option>
-                            </select>
+                            </select>--%>
                           </div>
                         </div>
                       </div>
                     </div><!--end row-->
-                    <button type="submit" class="btn btn-light">Submit</button>
+                      <asp:Button ID="Btn_Exit" runat="server" Text="Exit" class="btn btn-light"/>
+                      <asp:Button ID="Btn_Save" runat="server" Text="Save "  class="btn btn-light"/>
+                        <asp:Button ID="Populate_Button" runat="server"  Text="Populate" class="btn btn-light"/>
+                    <%--<button type="submit" class="btn btn-light">Submit</button>
                     <button class="btn btn-light">Cancel</button>
-                    <button class="btn btn-light">Populate</button>
+                    <button class="btn btn-light">Populate</button>--%>
                   </form>
                 </div>
               </div>
