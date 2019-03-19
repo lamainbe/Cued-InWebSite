@@ -45,7 +45,7 @@
         </div>
         <div>
             <label for="Location">Location</label>
-            <asp:RadioButtonList ID="RadioButtonList1" runat="server" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
+            <asp:RadioButtonList ID="RadioButtonList1" runat="server" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" AutoPostBack="True">
                 <asp:ListItem>School</asp:ListItem>
                 <asp:ListItem>Offsite</asp:ListItem>
             </asp:RadioButtonList>

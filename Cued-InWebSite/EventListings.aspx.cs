@@ -141,8 +141,21 @@ public partial class EventListings : System.Web.UI.Page
             lbl_Zip.Visible = true;
             txt_Zip.Visible = true;
         }
-    }
+        if (RadioButtonList1.SelectedIndex == 0)
+        {
+            lbl_Street.Visible = false;
+            txt_Street.Visible = false;
+            lbl_City.Visible = false;
+            txt_City.Visible = false;
+            lbl_State.Visible = false;
+            State_DropDown.Visible = false;
+            lbl_Counties.Visible = false;
+            ListBox_Counties.Visible = false;
+            lbl_Zip.Visible = false;
+            txt_Zip.Visible = false;
 
+        }
+    }
 
     protected void ListBox_School_SelectedIndexChanged(object sender, EventArgs e)
     {
